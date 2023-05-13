@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Patient</title>
+    <script>
+        function validateForm() {
+            var name = document.getElementById("name").value;
+            var surname = document.getElementById("surname").value;
+            var dateOfBirth = document.getElementById("dateOfBirth").value;
+
+            if (name === "") {
+                alert("Please enter a name.");
+                return false;
+            }
+
+            if (surname === "") {
+                alert("Please enter a surname.");
+                return false;
+            }
+
+            if (dateOfBirth === "") {
+                alert("Please enter a date of birth.");
+                return false;
+            }
+
+            var forbiddenCharacters = [";", "'", "--", "DROP", "DELETE", "UPDATE", "INSERT"];
+            var userInput = name + " " + surname + " " + dateOfBirth;
+            for (var i = 0; i < forbiddenCharacters.length; i++) {
+                if (userInput.includes(forbiddenCharacters[i])) {
+                    alert("Invalid input. Please remove any forbidden characters or strings.");
+                    return false;
+                }
+            }
+
+            return true;
+        }
+    </script>
+</head>
+<body>
+<a href="/patients">Back</a>
+<h2>Create Patient</h2>
+<form action="/patients/add" method="post" onsubmit="return validateForm()">
+    Name:<input type="text" name="name" id="name"><br>
+    Surname:<input type="text" name="surname" id="surname"><br>
+    DateOfBirthday:<input type="date" name="dateOfBirthday" id="dateOfBirth"><br>
+    <input type="submit" value="Create">
+</form>
+</body>
+</html>

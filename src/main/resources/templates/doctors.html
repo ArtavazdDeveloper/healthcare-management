@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Doctors</title>
+</head>
+<body>
+<a href="/">Back</a>
+<h2>Doctor Data</h2>
+<table border="1px"><a href="/doctors/add">Creat Doctor</a>
+    <tr>
+       <th>profilePic</th>
+       <th>id</th>
+       <th>name</th>
+       <th>surname</th>
+       <th>email</th>
+       <th>specialty</th>
+       <th>phoneNumber</th>
+       <th>action</th>
+    </tr>
+    <tr th:each="doctor : ${doctors} ">
+    <td>  <img th:if="${doctor.getProfilePic() != null}" th:src="@{/getImage(imageName=${doctor.getProfilePic()})}" width="100">
+      <img th:if="${doctor.getProfilePic() == null}" th:src="@{../default.png}" width="100">
+    </td>
+        <td th:text="${doctor.getId()}"></td>
+        <td th:text="${doctor.getName()}"></td>
+        <td th:text="${doctor.getSurname()}"></td>
+        <td th:text="${doctor.getEmail()}"></td>
+        <td th:text="${doctor.getSpecialty()}"></td>
+        <td th:text="${doctor.getPhoneNumber()}"></td>
+    <td><a th:href="@{/doctors/remove(id=${doctor.getId()})}">Remove</a></td>
+  </tr>
+</table>
+</body>
+</html>

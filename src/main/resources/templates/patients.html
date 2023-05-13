@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Patients</title>
+</head>
+<body>
+<a href="/">Back</a>
+<h2>Patients Data</h2>
+<table border="1px"><a href="/patients/add">Creat Patient</a>
+     <tr>
+        <th>id</th>
+        <th>name</th>
+        <th>surname</th>
+        <th>dateOfBirthday</th>
+        <th>action</th>
+    </tr>
+  <tr th:each="patient : ${patients} ">
+      <td th:text="${patient.getId()}"></td>
+      <td th:text="${patient.getName()}"></td>
+      <td th:text="${patient.getSurname()}"></td>
+      <td th:text="${patient.getDateOfBirthday()}"></td>
+      <td><a th:href="@{/patients/remove(id=${patient.getId()})}">Remove</a></td>
+  </tr>
+</table>
+</body>
+</html>

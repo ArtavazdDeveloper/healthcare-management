@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Doctor</title>
+    <script>
+        function validateForm() {
+            var name = document.getElementById("name").value;
+            var surname = document.getElementById("surname").value;
+            var email = document.getElementById("email").value;
+
+            if (name === "") {
+                alert("Please enter a name.");
+                return false;
+            }
+
+            if (surname === "") {
+                alert("Please enter a surname.");
+                return false;
+            }
+
+            if (email === "") {
+                alert("Please enter an email.");
+                return false;
+            }
+
+            var forbiddenCharacters = [";", "'", "--", "DROP", "DELETE", "UPDATE", "INSERT"];
+            var userInput = name + " " + surname + " " + email;
+            for (var i = 0; i < forbiddenCharacters.length; i++) {
+                if (userInput.includes(forbiddenCharacters[i])) {
+                    alert("Invalid input. Please remove any forbidden characters or strings.");
+                    return false;
+                }
+            }
+            return true;
+        }
+    </script>
+</head>
+<body>
+<a href="/doctors">Back</a>
+<h2>Create Doctors</h2>
+<form action="/doctors/add" method="post" enctype="multipart/form-data" onsubmit="return validateForm()">
+    Name:<input type="text" name="name" id="name"><br>
+    Surname:<input type="text" name="surname" id="surname"><br>
+    Email:<input type="text" name="email" id="email"><br>
+    Specialty:<input type="text" name="specialty"><br>
+    PhoneNumber:<input type="text" name="phoneNumber"><br>
+    <input type="file" name="image">
+    <input type="submit" value="Create">
+</form>
+</body>
+</html>
