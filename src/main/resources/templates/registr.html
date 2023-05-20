@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Register User</title>
+  <script>
+    function validateForm() {
+      var name = document.forms["registrationForm"]["name"].value;
+      var surname = document.forms["registrationForm"]["surname"].value;
+      var email = document.forms["registrationForm"]["email"].value;
+      var password = document.forms["registrationForm"]["password"].value;
+
+      if (name === "") {
+        alert("Name must be filled out");
+        return false;
+      }
+
+      if (surname === "") {
+        alert("Surname must be filled out");
+        return false;
+      }
+
+      if (email === "") {
+        alert("Email must be filled out");
+        return false;
+      }
+
+      if (password === "") {
+        alert("Password must be filled out");
+        return false;
+      }
+    }
+  </script>
+</head>
+<body>
+<h1>Register User</h1>
+<form action="/user/register" method="post" name="registrationForm" onsubmit="return validateForm()">
+  Name: <input type="text" name="name"><br>
+  Surname: <input type="text" name="surname"><br>
+  Email: <input type="text" name="email"><br>
+  Password: <input type="password" name="password"><br>
+  <input type="submit" value="Create">
+</form>
+</body>
+</html>

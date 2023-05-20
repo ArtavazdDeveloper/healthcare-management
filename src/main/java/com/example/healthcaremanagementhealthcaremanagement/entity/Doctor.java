@@ -16,7 +16,7 @@ public class Doctor {
     private int id;
 
 
-    @NotBlank
+
     @NotEmpty(message = "Name should not be empty!")
     @Size(min = 4, max =30, message = "Name should be between 4 and 30 characters " )
     @Column(name = "name")
